@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accord — a BYOK alternative to Grokbot</title>
+  <meta name="description" content="Accord is a chatbot/agent and Grokbot alternative built on BYOK — bring your own API key, control the model and the cost, keep your data yours." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#top"><span class="logo-mark">▲</span> Accord</a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#demo">Try it</a>
+      </nav>
+      <a class="btn btn-small" href="#demo">Get started</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Grokbot alternative · BYOK</p>
+        <h1>Meet <span class="accent">Accord</span>.<br/>The chatbot where <em>your key</em> is the boss.</h1>
+        <p class="lede">
+          Accord is a chatbot &amp; agent assistant — a cleaner alternative to Grok's bot — built on a
+          <strong>BYOK (Bring Your Own Key)</strong> model. Plug in your own API key and you control the model,
+          the cost, and the data. No subscriptions. No middleman. No lock-in.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#demo">Add your key &amp; try it</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2>Why Accord</h2>
+        <p class="section-sub">Everything a hosted bot gives you — minus the hosted bot's grip on your wallet and data.</p>
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">🔑</div>
+            <h3>BYOK — your key stays yours</h3>
+            <p>Paste your own API key and it lives in your browser only. It is <strong>never sent to our servers</strong> — because we don't have any. Your requests go straight from your browser to your provider.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧠</div>
+            <h3>Choice of models</h3>
+            <p>Any model your provider offers, from fast-and-cheap to frontier. Swap models mid-conversation — Accord is a conduit, not a cage.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔓</div>
+            <h3>No lock-in</h3>
+            <p>Static site, open code, OpenAI-compatible endpoints. Switch providers with a URL change. There is nothing to migrate away from.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Privacy-first</h3>
+            <p>No accounts, no analytics, no chat logs on our side. Your conversations are between you and the model you choose.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="how">
+      <div class="container">
+        <h2>How it works</h2>
+        <p class="section-sub">Three steps. About a minute.</p>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <div><h3>Paste your API key</h3><p>Grab a key from your provider (OpenAI, or any OpenAI-compatible endpoint). Paste it into the get-started section below. It's stored in your browser only — memory/localStorage — never sent to us.</p></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><h3>Pick a model</h3><p>Choose which model your key should use. Fast and frugal, or maximum capability — your key, your call.</p></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><h3>Start chatting</h3><p>That's it. Type a message and Accord sends it — with your key, from your browser, directly to your chosen endpoint.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="container container-narrow">
+        <h2>Get started: add your key</h2>
+        <p class="section-sub">
+          🔒 Your key is kept in memory/localStorage in <em>your</em> browser only and is <strong>never sent to our server</strong> — we don't operate one. Requests go browser → provider, directly.
+        </p>
+        <div class="widget card widget-pad">
+          <label for="apiKey">Your API key</label>
+          <input id="apiKey" type="password" placeholder="sk-... (your key — never ours)" autocomplete="off" />
+          <div class="row">
+            <div>
+              <label for="endpoint">Endpoint (OpenAI-compatible)</label>
+              <input id="endpoint" type="text" placeholder="https://api.openai.com/v1/chat/completions" />
+            </div>
+            <div>
+              <label for="model">Model</label>
+              <select id="model">
+                <option value="gpt-4o-mini">gpt-4o-mini</option>
+                <option value="gpt-4o">gpt-4o</option>
+                <option value="gpt-4.1">gpt-4.1</option>
+                <option value="custom">custom…</option>
+              </select>
+            </div>
+          </div>
+          <div id="customModelWrap" hidden>
+            <label for="customModel">Custom model name</label>
+            <input id="customModel" type="text" placeholder="my-provider/model-name" />
+          </div>
+          <button id="saveKey" class="btn btn-primary btn-small">Save key locally</button>
+          <span id="keyStatus" class="muted small"></span>
+        </div>
+
+        <div class="widget card widget-pad">
+          <div id="chatLog" class="chat-log" aria-live="polite"></div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" type="text" placeholder="Type a message…" autocomplete="off" />
+            <button class="btn btn-primary btn-small" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p><span class="logo-mark">▲</span> <strong>Accord</strong> — a BYOK chatbot &amp; agent, and a Grokbot alternative.</p>
+      <p class="muted">Your key. Your model. Your data. · <a href="https://github.com/WBR-Technologies/Accord">Source on GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
